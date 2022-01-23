@@ -22,6 +22,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone_no',
+        'address',
         'password',
     ];
 
@@ -43,4 +45,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    // to retrieve data of "items" that user owns
+    // use Auth to access supplier's items: {{ Auth::user()->items }}
+    public function items() {
+        return $this->hasMany(Item::class, 'suppID');
+    }
+
+    // to retrieve data of "purchases" that user owns
+    // use Auth to access customer's purchases: {{ Auth::user()->purchases }}
+    public function purchases() {
+        return $this->hasMany(Purchase::class, 'custID');
+    }
 }
