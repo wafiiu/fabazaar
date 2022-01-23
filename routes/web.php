@@ -43,5 +43,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function() {
     Route::get('/listcustomers', 'App\Http\Controllers\AdminController@customers')->name('admin.customers');
     Route::get('/listsuppliers', 'App\Http\Controllers\AdminController@suppliers')->name('admin.suppliers');
     Route::post('/userdetails', 'App\Http\Controllers\AdminController@details')->name('admin.details');
-});s
+});
+// Route::post('/createitem', 'App\Http\Controllers\ItemController@store');
+
 require __DIR__.'/auth.php';
