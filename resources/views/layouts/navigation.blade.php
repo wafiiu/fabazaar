@@ -17,6 +17,58 @@
                         {{ __('home') }}
                     </x-nav-link>
                 </div>
+                <!-- Customer -->
+                @if (Auth::user()->hasRole('customer'))
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('orders.create')" :active="request()->routeIs('orders.create')">
+                            {{ __('Marketplace') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.index')">
+                            {{ __('Your Orders') }}
+                        </x-nav-link>
+                    </div>
+                @endif
+
+                <!-- SUPPLIER -->
+                @if (Auth::user()->hasRole('supplier'))
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('inventory.index')" :active="request()->routeIs('inventory.index')">
+                        {{ __('Your Inventory') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('inventory.create')" :active="request()->routeIs('inventory.create')">
+                        {{ __('Sell Item') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('inventory.orders')" :active="request()->routeIs('inventory.orders')">
+                        {{ __('Customer\'s Orders') }}
+                    </x-nav-link>
+                </div>
+                @endif
+
+                <!-- ADMIN -->
+                @if (Auth::user()->hasRole('admin'))
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('admincategory.index')" :active="request()->routeIs('admincategory.index')">
+                            {{ __('Category Editor') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('admin.customers')" :active="request()->routeIs('admin.customers')">
+                            {{ __('Customer\'s List') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('admin.suppliers')" :active="request()->routeIs('admin.suppliers')">
+                            {{ __('Supplier\'s List') }}
+                        </x-nav-link>
+                    </div>
+                @endif
+
             </div>
 
             <!-- Settings Dropdown -->
